@@ -17,23 +17,28 @@ class MovieCard extends StatelessWidget {
       margin : EdgeInsets.symmetric(horizontal: responsive.diagonalPercent(0)) ,
       width  : responsive.widthPercent(40),
       height : responsive.heightPercent(22),
-      child  : this.isMovieCardRecomendation?movieCardHorizzontal(responsive, textStyleCustom):movieCardVertical(responsive, textStyleCustom)
+      child  : this.isMovieCardRecomendation?movieCardHorizzontal(responsive, textStyleCustom):movieCardVertical(responsive, textStyleCustom, context)
     );
   }
   
-  Column movieCardVertical(Responsive responsive, TextStyleCustom textStyleCustom) {
+  Column movieCardVertical(Responsive responsive, TextStyleCustom textStyleCustom, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius : BorderRadius.circular(10),
-          child : FadeInImage(
-            placeholder: AssetImage('assets/no-image.jpg'),
-            image: NetworkImage(this.urlImage!),
-            height: responsive.heightPercent(25),
-            width:  responsive.widthPercent(35),
-            fit: BoxFit.cover
-          ) ,
+        GestureDetector(
+          onTap: (){
+           Navigator.pushNamed(context, 'popular');
+          },
+          child: ClipRRect(
+            borderRadius : BorderRadius.circular(10),
+            child : FadeInImage(
+              placeholder: AssetImage('assets/no-image.jpg'),
+              image: NetworkImage(this.urlImage!),
+              height: responsive.heightPercent(25),
+              width:  responsive.widthPercent(35),
+              fit: BoxFit.cover
+            ) ,
+          ),
         ),
         SizedBox(height: responsive.heightPercent(0.5)),
         Text(

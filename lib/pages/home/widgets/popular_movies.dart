@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/global_widgets/movie_card.dart';
 import 'package:movie_app/utils/responsive.dart';
 
-class PopularMovies extends StatelessWidget {
-  const PopularMovies({
+class PopularMoviesWidget extends StatelessWidget {
+  const PopularMoviesWidget({
     Key? key,
     required this.resposive,
   }) : super(key: key);

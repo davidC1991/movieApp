@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text('Popular', style: textStyleCustom.subTitle),  
             SizedBox(height: resposive.heightPercent(2)), 
-            PopularMovies(resposive: resposive),
+            PopularMoviesWidget(resposive: resposive),
             SizedBox(height: resposive.heightPercent(0)), 
             SeeAll(textStyleCustom: textStyleCustom),
             Divider(color: greyColor.withOpacity(0.3), thickness: 0.5), 

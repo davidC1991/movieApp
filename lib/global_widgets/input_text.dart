@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/utils/colors.dart';
-import 'custom_form.dart';
+
+
 
 
 class InputText extends StatefulWidget {
@@ -31,7 +31,7 @@ class InputText extends StatefulWidget {
 class InputTextState extends State<InputText> {
   String _errorText = '';
   bool? _obscureText;
-  CustomFormState? _formState;
+ 
 
   String get errorText => _errorText;
 

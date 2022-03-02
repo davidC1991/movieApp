@@ -21,7 +21,7 @@ class RoundedButton extends StatelessWidget {
     this.backgroundColor = yellowColor,
     this.borderColor = whiteColor,
     this.fullWidth = true,
-    this.padding = const EdgeInsets.symmetric(vertical: 9, horizontal: 30),
+    this.padding = const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
     this.fontSize,
     required this.width,
     required this.height
@@ -32,6 +32,7 @@ class RoundedButton extends StatelessWidget {
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
     return CupertinoButton(
       child: Container(
+        alignment: Alignment.center,
         width: this.fullWidth ? double.infinity : this.width,
         height: this.height,
         padding: this.padding,

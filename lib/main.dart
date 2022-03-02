@@ -22,13 +22,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<PageViewController>(create: (_) => PageViewController(),)
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           //primarySwatch: Colors.yellow,
           primaryColor: blackColor,
           scaffoldBackgroundColor: blackColor,
-          accentColor: Colors.red,
+          accentColor: yellowColor,
           textTheme: TextTheme(
            
           ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/pages/favorites/favorites.dart';
 import 'package:movie_app/pages/home/home.dart';
 import 'package:movie_app/pages/pageView/pageView_controller.dart';
-import 'package:movie_app/pages/pageView/widgets/menuNavigationBar.dart';
+import 'package:movie_app/pages/pageView/widgets/menuNavigationBar_widget.dart';
+import 'package:movie_app/pages/recent/recent.dart';
 import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +31,8 @@ class PageViewScreen extends StatelessWidget {
         controller: pageViewController.pageController,
         children: [
           HomePage(),
-          Container(child: Center(child: Text('pagina 2')), width: double.infinity, height: double.infinity,),
-          Container(child: Center(child: Text('pagina 3')), width: double.infinity, height: double.infinity,),
+          FavoritesPage(),
+          RecentPage(),
           Container(child: Center(child: Text('pagina 4')), width: double.infinity, height: double.infinity,),
         ],
       ),

@@ -22,10 +22,10 @@ class MenuNavigationBar extends StatelessWidget {
       showUnselectedLabels:true ,
       selectedLabelStyle: TextStyle(color: Colors.white),
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.gamepad),label: 'Generar'),
-        BottomNavigationBarItem(icon: Icon(Icons.history),label: 'Historial'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline),label: 'Perfil'),
-        BottomNavigationBarItem(icon: Icon(Icons.delivery_dining_rounded),label: 'Domicilios')
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label: 'Favorites'),
+        BottomNavigationBarItem(icon: Icon(Icons.history),label: 'Recent'),
+        BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search')
       ],
       
     );

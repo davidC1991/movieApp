@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:movie_app/global_widgets/rounded_button.dart';
 import 'package:movie_app/utils/colors.dart';
@@ -64,7 +66,9 @@ class MovieCardPopular extends StatelessWidget {
           width: responsive.widthPercent(40),
           height: responsive.heightPercent(5),
           label: 'Watch Now',
-          onPressed: (){ },
+          onPressed: (){
+            Navigator.pushReplacementNamed(context, 'details');
+           },
         ),
       ],
     );

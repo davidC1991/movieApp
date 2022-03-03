@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/pages/popular/widgets/movie_card_popular.dart';
+import 'package:movie_app/pages/popular/widgets/movie_card_popular_widget.dart';
 import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
 

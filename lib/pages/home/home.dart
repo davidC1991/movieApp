@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/pages/home/widgets/popular_movies.dart';
-import 'package:movie_app/pages/home/widgets/recomendations_movies.dart';
+import 'package:movie_app/pages/home/widgets/popular_movies_widget.dart';
+import 'package:movie_app/pages/home/widgets/recomendations_movies_widget.dart';
 import 'package:movie_app/pages/home/widgets/see_all.dart';
 import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/responsive.dart';

@@ -73,12 +73,12 @@ class MovieCard extends StatelessWidget {
         ),
         SizedBox(width: responsive.heightPercent(3)),
         Container(
-          padding: EdgeInsets.only(top:25),
+          padding: EdgeInsets.only(top:18),
           height: responsive.heightPercent(20),
           width:  responsive.widthPercent(48),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 this.nameMovie!,

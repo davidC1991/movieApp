@@ -1,8 +1,8 @@
 class User{
-  String email, password;
+  String name, password;
   
   User({
-    required this.email,
+    required this.name,
     required this.password
   });
 

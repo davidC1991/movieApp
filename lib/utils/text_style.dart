@@ -18,7 +18,7 @@ class TextStyleCustom{
     this._textAppbar    = textTheme.headline3!.copyWith(fontSize:20, color: Colors.white, fontWeight: FontWeight.w200);
     this._textYellow    = textTheme.headline3!.copyWith(fontSize:20, color: yellowColor, fontWeight: FontWeight.w300);
     this._textIMDb      = textTheme.headline3!.copyWith(fontSize:12, color: greyColor, fontWeight: FontWeight.w100);
-    this._textMovie     = textTheme.headline3!.copyWith(fontSize:20, color: Colors.white, fontWeight: FontWeight.w200);
+    this._textMovie     = textTheme.headline3!.copyWith(fontSize:15, color: Colors.white, fontWeight: FontWeight.w200);
     this._subTitle      = textTheme.headline3!.copyWith(fontSize:24, color: Colors.white, fontWeight: FontWeight.bold);
     this._textUnderline = textTheme.headline3!.copyWith(fontSize:18, color: Colors.white, decoration: TextDecoration.underline);
   }

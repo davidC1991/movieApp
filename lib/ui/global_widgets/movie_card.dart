@@ -1,14 +1,17 @@
 
 import 'package:flutter/material.dart';
+import 'package:movie_app/ui/global_controllers/favoritos_movie_controllers.dart';
 import 'package:movie_app/ui/global_widgets/rounded_button.dart';
 import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
+import 'package:provider/provider.dart';
 
 class MovieCard extends StatelessWidget {
   final String? nameMovie, urlImage, iMDB;
+  final VoidCallback? onTap, onTapLike;
   final bool isMovieCardRecomendation;
-  MovieCard({required this.nameMovie,this.urlImage, required this.isMovieCardRecomendation, this.iMDB : '9,6'});
+  MovieCard({required this.nameMovie,this.urlImage, required this.isMovieCardRecomendation, this.iMDB : '9,6', this.onTap, this.onTapLike});
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive(context);
@@ -27,9 +30,7 @@ class MovieCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: (){
-           Navigator.pushNamed(context, 'popular');
-          },
+          onTap: this.onTap, 
           child: ClipRRect(
             borderRadius : BorderRadius.circular(10),
             child : FadeInImage(
@@ -59,6 +60,7 @@ class MovieCard extends StatelessWidget {
   }
 
   Row movieCardHorizzontal(Responsive responsive, TextStyleCustom textStyleCustom) {
+    
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -103,8 +105,12 @@ class MovieCard extends StatelessWidget {
                   label: 'Watch Now',
                   onPressed: (){ },
                  ),
-                 SizedBox(width: responsive.heightPercent(3.8)),
-                 Icon(Icons.label_important_outline, color: greyColor, size: 40,) 
+                 SizedBox(width: responsive.heightPercent(2)),
+                 IconButton(
+                   onPressed: this.onTapLike,
+                   icon: Icon(Icons.label_important_outline, color: greyColor, size: 40,) 
+                 )
+                 
                ],
              ),
             ],

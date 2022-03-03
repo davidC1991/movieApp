@@ -1,8 +1,11 @@
+import 'package:movie_app/data/models/details_movies_model.dart';
+import 'package:movie_app/data/models/episode_movie_model.dart';
 import 'package:movie_app/data/models/popular_movies_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:movie_app/data/models/recomendations_movies_model.dart';
+import 'package:movie_app/data/models/video_movie_model.dart';
 
 class MoviesService{
   
@@ -18,7 +21,7 @@ class MoviesService{
   
   Future<List<ResultPopular>?> getPopularMovies()async{
  
-    this._detailUrlPath = '/3/movie/popular';
+    this._detailUrlPath = '/3/tv/popular';
     var url = Uri.https(_baseUrl, _detailUrlPath,{
       'api_key' : _keyApi,
       'language': 'en-US&page=1'
@@ -37,8 +40,26 @@ class MoviesService{
 
    Future<List<ResultRecomendations>?> getRecomendationsMovies()async{
  
-    this._detailUrlPath = '/3/movie/top_rated';
+    this._detailUrlPath = '/3/tv/top_rated';
     var url = Uri.https(_baseUrl, _detailUrlPath,{
+      'api_key' : _keyApi,
+      'language': 'en-US&page=1'
+    } );
+
+    final response   = await http.get(url);
+    
+    if (response.statusCode == 200){
+      ResponseRecomendationsMovies responseRecomendationsMovies = ResponseRecomendationsMovies.fromMap(json.decode(response.body));
+      return responseRecomendationsMovies.results; 
+    }
+   
+    return null;  
+  }
+
+   Future<ResponseDetailsMovies?> getDetailsMovies(String id)async{
+  
+    this._detailUrlPath = '/3/tv/'+id;
+    var url = Uri.https(_baseUrl, this._detailUrlPath,{
       'api_key' : _keyApi,
       'language': 'en-US&page=1'
     } );
@@ -46,8 +67,44 @@ class MoviesService{
     final response   = await http.get(url);
   
     if (response.statusCode == 200){
-      ResponseRecomendationsMovies responseRecomendationsMovies = ResponseRecomendationsMovies.fromMap(json.decode(response.body));
-      return responseRecomendationsMovies.results; 
+      ResponseDetailsMovies responseDetailsMovie = ResponseDetailsMovies.fromMap(json.decode(response.body));
+      return responseDetailsMovie; 
+    }
+   
+    return null;  
+  }
+
+  Future<ResponseEpisodeMovies?> getEpisodeMovie(String id, String seasonNumber, String episodeNumber)async{
+  
+    this._detailUrlPath = '/3/tv/'+id+'/season/'+seasonNumber+'/episode/'+episodeNumber;
+    var url = Uri.https(_baseUrl, this._detailUrlPath,{
+      'api_key' : _keyApi,
+      'language': 'en-US&page=1'
+    } );
+
+    final response   = await http.get(url);
+  
+    if (response.statusCode == 200){
+      ResponseEpisodeMovies responseEpisodeMovies = ResponseEpisodeMovies.fromMap(json.decode(response.body));
+      return responseEpisodeMovies; 
+    }
+   
+    return null;  
+  }
+
+  Future<ResponseVideoMovies?> getVideoMovie(String id, String seasonNumber, String episodeNumber)async{
+  
+    this._detailUrlPath = '/3/tv/'+id+'/season/'+seasonNumber+'/episode/'+episodeNumber+'/videos';
+    var url = Uri.https(_baseUrl, this._detailUrlPath,{
+      'api_key' : _keyApi,
+      'language': 'en-US&page=1'
+    } );
+
+    final response   = await http.get(url);
+  
+    if (response.statusCode == 200){
+      ResponseVideoMovies responseVideoMovies = ResponseVideoMovies.fromMap(json.decode(response.body));
+      return responseVideoMovies; 
     }
    
     return null;  

@@ -8,8 +8,9 @@ import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
 
 class MovieCardPopular extends StatelessWidget {
-  final String? nameMovie, urlImage;
-  MovieCardPopular({required this.nameMovie,this.urlImage});
+  final String? nameMovie, urlImage, iMDB;
+  final VoidCallback? onTap;
+  MovieCardPopular({required this.nameMovie,this.urlImage, this.iMDB : '9,6', this.onTap});
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive(context);
@@ -28,20 +29,15 @@ class MovieCardPopular extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: responsive.heightPercent(4)),
-        GestureDetector(
-          onTap: (){
-          //  Navigator.pushNamed(context, 'popular');
-          },
-          child: ClipRRect(
-            borderRadius : BorderRadius.circular(10),
-            child : FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(this.urlImage!),
-              height: responsive.heightPercent(50),
-              width:  responsive.widthPercent(69),
-              fit: BoxFit.cover
-            ) ,
-          ),
+        ClipRRect(
+          borderRadius : BorderRadius.circular(10),
+          child : FadeInImage(
+            placeholder: AssetImage('assets/no-image.jpg'),
+            image: NetworkImage(this.urlImage!),
+            height: responsive.heightPercent(50),
+            width:  responsive.widthPercent(69),
+            fit: BoxFit.cover
+          ) ,
         ),
         SizedBox(height: responsive.heightPercent(2.5)),
         Text(
@@ -58,7 +54,7 @@ class MovieCardPopular extends StatelessWidget {
         ),
         ),
         SizedBox(height: responsive.heightPercent(2)),
-        Text('IMDb:  9,4', style: textStyleCustom.textIMDb),
+        Text('IMDb:  '+this.iMDB!, style: textStyleCustom.textIMDb),
         SizedBox(height: responsive.heightPercent(2)),
         RoundedButton(
           fullWidth: false,
@@ -66,9 +62,7 @@ class MovieCardPopular extends StatelessWidget {
           width: responsive.widthPercent(40),
           height: responsive.heightPercent(5),
           label: 'Watch Now',
-          onPressed: (){
-            Navigator.pushReplacementNamed(context, 'details');
-           },
+          onPressed: this.onTap!,
         ),
       ],
     );

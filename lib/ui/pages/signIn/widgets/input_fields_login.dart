@@ -46,7 +46,6 @@ class InputFieldsLogin extends StatelessWidget {
                 validator: (text) {
                  
                   if (text.length>4) return '';
-                  //signInController.name = null;
                   return "Characters must be greater 4";
                 },
                 labelText: "Name",
@@ -57,10 +56,8 @@ class InputFieldsLogin extends StatelessWidget {
                InputText(
                 keyboardType: TextInputType.emailAddress,
                 validator: (text) {
-                  //print(text);
-                  if (text.length > 6) return '';
-                  //signInController.name = null;
-                  return "Characters must be greater 6";
+                 if (text.length > 6) return '';
+                 return "Characters must be greater 6";
                 },
                 labelText: "Password",
                 obscureText: true,

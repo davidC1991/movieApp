@@ -10,7 +10,6 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('sign page start..');
     final Responsive responsive = Responsive.of(context);
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
     final SignInController signInController = Provider.of<SignInController>(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/utils/colors.dart';
 
 
 
@@ -70,7 +71,8 @@ class InputTextState extends State<InputText> {
           labelStyle: TextStyle(color: Colors.white),
           contentPadding: EdgeInsets.symmetric(vertical: 5),
           labelText: widget.labelText,
-          enabledBorder:  UnderlineInputBorder(borderSide: BorderSide(color: Colors.white))
+          enabledBorder:  UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: yellowColor)),
         ),
       ),
     );

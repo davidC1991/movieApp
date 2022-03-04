@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/models/popular_movies_model.dart';
-import 'package:movie_app/ui/global_controllers/favoritos_movie_controllers.dart';
 import 'package:movie_app/ui/global_widgets/movie_card.dart';
 import 'package:movie_app/ui/global_controllers/service_api_controller.dart';
 import 'package:movie_app/utils/responsive.dart';

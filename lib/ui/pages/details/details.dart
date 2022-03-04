@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:ionicons/ionicons.dart';
 
 
+// ignore: must_be_immutable
 class DetailsPage extends StatelessWidget {
   DetailsPage({ Key? key }) : super(key: key);
   bool isFavorite = false;

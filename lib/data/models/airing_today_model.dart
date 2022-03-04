@@ -1,9 +1,3 @@
-// To parse this JSON data, do
-//
-//     final responseAiringTodayMovies = responseAiringTodayMoviesFromMap(jsonString);
-
-import 'dart:convert';
-
 class ResponseAiringTodayMovies {
     ResponseAiringTodayMovies({
         this.page,

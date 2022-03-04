@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/models/episode_movie_model.dart';
 import 'package:movie_app/ui/global_controllers/service_api_controller.dart';
-import 'package:movie_app/ui/pages/details/datils_controller.dart';
 import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/responsive.dart';
 import 'package:provider/provider.dart';

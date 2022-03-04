@@ -15,7 +15,9 @@ abstract class Dialogs {
       builder: (_) => WillPopScope(
         onWillPop: () async => dismissible,
         child: CupertinoAlertDialog(
+          // ignore: unnecessary_null_comparison
           title: title != null ? Text(title) : null,
+          // ignore: unnecessary_null_comparison
           content: description != null ? Text(description) : null,
           actions: [
             CupertinoDialogAction(

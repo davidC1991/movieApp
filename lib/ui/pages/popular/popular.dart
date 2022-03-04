@@ -4,7 +4,6 @@ import 'package:movie_app/data/models/details_movies_model.dart';
 import 'package:movie_app/ui/global_controllers/service_api_controller.dart';
 import 'package:movie_app/ui/pages/details/datils_controller.dart';
 import 'package:movie_app/ui/pages/popular/widgets/movie_card_popular_widget.dart';
-import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +17,7 @@ class PopularPage extends StatelessWidget {
     final String idMOvie = ModalRoute.of(context)!.settings.arguments.toString();
     final ServiceApiController serviceApiController = Provider.of<ServiceApiController>(context, listen: false);
     
-    final Responsive resposive = Responsive(context);
+
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
     return Scaffold(
       appBar: AppBar(

@@ -27,7 +27,7 @@ class RecomendationsMovies extends StatelessWidget {
           final List<ResultRecomendations>? _listRecomendatedMovies = snapshot.data;
           return cardsRecomendationsMoviesWidget(_listRecomendatedMovies, context);
         }
-        return Center(child: CupertinoActivityIndicator( radius: 15 ));;
+        return Center(child: CupertinoActivityIndicator( radius: 15 ));
       }
     );
   }

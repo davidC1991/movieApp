@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/data/models/recomendations_movies_model.dart';
 import 'package:movie_app/ui/global_controllers/favoritos_movie_controllers.dart';
 import 'package:movie_app/ui/global_widgets/rounded_button.dart';
 import 'package:movie_app/utils/colors.dart';
@@ -10,6 +9,7 @@ import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
 
+// ignore: must_be_immutable
 class MovieCard extends StatelessWidget {
   final String? nameMovie, urlImage, iMDB;
   final VoidCallback? onTap, onTapLike;

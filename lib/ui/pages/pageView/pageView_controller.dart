@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class PageViewController extends ChangeNotifier {
    PageController _pageController = PageController();
-   String _titlePage = '';
+   String _titlePage = 'Home';
    int _currentPage = 0;
    
    PageController? get pageController => this._pageController; 

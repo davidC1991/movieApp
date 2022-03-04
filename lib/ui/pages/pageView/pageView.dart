@@ -21,12 +21,12 @@ class PageViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     moviesService.getPopularMovies();
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
-    PageViewController pageViewController = Provider.of<PageViewController>(context, listen: false);
+    PageViewController pageViewController = Provider.of<PageViewController>(context, listen: true);
     return  Scaffold(
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text('Home',style:  textStyleCustom.textAppbar),
+        title: Text(pageViewController.titlePage,style:  textStyleCustom.textAppbar),
         actions: [
           IconButton(
             onPressed: (){

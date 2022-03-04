@@ -15,6 +15,21 @@ class MenuNavigationBar extends StatelessWidget {
       onTap: (i){
         print('indes: $i');
         pageViewController.updateIndexPage = i;
+
+        switch (i) {
+          case 0:
+            pageViewController.updateTitlePage = 'Home';
+            break;
+          case 1:
+            pageViewController.updateTitlePage = 'Favorites';
+            break;
+          case 2:
+            pageViewController.updateTitlePage = 'Recent';
+            break;
+          case 3:
+            pageViewController.updateTitlePage = 'Search';
+            break;      
+        }
       },
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.black,

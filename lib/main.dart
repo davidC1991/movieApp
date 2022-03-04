@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/helpers/dependency_injection.dart';
 import 'package:movie_app/preferences/auth_preference.dart';
 import 'package:movie_app/routes/app_routes.dart';
 import 'package:movie_app/ui/global_controllers/favoritos_movie_controllers.dart';
@@ -13,6 +14,7 @@ void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new AuthPreference();
   await prefs.initPrefs();
+  DependencyInjection.initialize();
   runApp(MyApp());
 }
 

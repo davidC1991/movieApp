@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:movie_app/data/repositories/auth_repository.dart';
-import 'package:movie_app/data/repositories_implementation/auth_repository_impl.dart';
-import 'package:movie_app/data/services/auth_service.dart';
+import 'package:movie_app/helpers/get.dart';
 import 'package:movie_app/preferences/auth_preference.dart';
 
 class SignInController extends ChangeNotifier {
   String? _name, _password;
   
-  AuthRepository authRepository = AuthRepositoryImpl(AuthService()); 
+  AuthRepository authRepository = Get.i.find<AuthRepository>();
   final AuthPreference authPreference = AuthPreference();
 
   set name(String? name) {

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:movie_app/data/models/details_movies_model.dart';
-import 'package:movie_app/data/models/popular_movies_model.dart';
 import 'package:movie_app/data/models/recomendations_movies_model.dart';
 
 class FavoritesMoviesControllers extends ChangeNotifier{
@@ -16,8 +15,15 @@ class FavoritesMoviesControllers extends ChangeNotifier{
     return listNew;
    }
 
-   set addFavoriteMoviePopular(ResponseDetailsMovies moviePopular) => this._favoritesListPopular.add(moviePopular);
-   set addFavoriteMovieRecomendations(ResultRecomendations movieRecomendations) => this._favoritesListRecomendations.add(movieRecomendations);
+   set addFavoriteMoviePopular(ResponseDetailsMovies moviePopular){
+     this._favoritesListPopular.add(moviePopular);
+     notifyListeners();
+   } 
+   
+   set addFavoriteMovieRecomendations(ResultRecomendations movieRecomendations) {
+    this._favoritesListRecomendations.add(movieRecomendations);
+    notifyListeners();
+   }
 
 
 }

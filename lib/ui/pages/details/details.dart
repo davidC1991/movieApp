@@ -11,34 +11,24 @@ import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
+import 'package:ionicons/ionicons.dart';
+
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({ Key? key }) : super(key: key);
+  DetailsPage({ Key? key }) : super(key: key);
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive(context);
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
-    //final Map<String,dynamic> dataEpisode = ModalRoute.of(context)!.settings.arguments as Map<String ,dynamic>;
     final ServiceApiController serviceApiController = Provider.of<ServiceApiController>(context, listen: false);
     final DetailsController detailsController = Provider.of<DetailsController>(context);
-    final FavoritesMoviesControllers favoritesMoviesControllers = Provider.of<FavoritesMoviesControllers>(context, listen: false);
-    //print(dataEpisode);
+    final FavoritesMoviesControllers favoritesMoviesControllers = Provider.of<FavoritesMoviesControllers>(context, listen: true);
+    
+   
     return Scaffold(
-      appBar: AppBar(
-        title: Text('title movie',style: textStyleCustom.textAppbar),
-        elevation: 0,
-        leading: IconButton(
-          onPressed: ()=> Navigator.pop(context),
-          icon:  Icon(Icons.arrow_back_ios)
-        ),
-        actions: [
-          IconButton(
-            onPressed: ()=> favoritesMoviesControllers.addFavoriteMoviePopular = serviceApiController.detailsMovie!,
-            icon: Icon(Icons.ac_unit_rounded, color: greyColor) 
-          )
-        ],
-      ),
+     
       body: SafeArea(
         child: FutureBuilder(
           future: serviceApiController.getEpisodeMovies(serviceApiController.idMovie!, '1' , detailsController.currentEpisode.toString()),
@@ -46,7 +36,7 @@ class DetailsPage extends StatelessWidget {
             if (snapshot.hasData){
               final ResponseEpisodeMovies _episode = snapshot.data!;
               //print(_episode.overview);
-              return detailsMovieWidget(responsive, textStyleCustom, _episode, serviceApiController.detailsMovie!);
+              return detailsMovieWidget(responsive, textStyleCustom, _episode, serviceApiController.detailsMovie!, context, favoritesMoviesControllers);
             }
             return Center(child: CupertinoActivityIndicator());
           },
@@ -54,8 +44,63 @@ class DetailsPage extends StatelessWidget {
       ),
     );
   }
+  
+   getFavoritiesMovie(FavoritesMoviesControllers favoritesMoviesControllers, ResponseDetailsMovies detailsMovie){
+    
+    try {
+      favoritesMoviesControllers.favoritesListPopular.firstWhere((element) => element.name == detailsMovie.name);
+      this.isFavorite = true;
+    } catch (e) {
+      print(e);
+    }
+  }
 
-  Container detailsMovieWidget(Responsive responsive, TextStyleCustom textStyleCustom, ResponseEpisodeMovies episode, ResponseDetailsMovies detailsMovie) {
+
+  Container titlePageWidget(Responsive responsive, TextStyleCustom textStyleCustom, BuildContext context, ResponseDetailsMovies detailsMovie,FavoritesMoviesControllers favoritesMoviesControllers) {
+    
+    getFavoritiesMovie(favoritesMoviesControllers,detailsMovie);
+    return Container(
+           alignment: Alignment.bottomCenter,
+           padding: EdgeInsets.only(bottom: responsive.heightPercent(2)),
+           width: responsive.widthPercent(100),
+           height: responsive.heightPercent(10),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+              Container(
+                padding: EdgeInsets.zero,
+                width: responsive.widthPercent(70),
+                height: responsive.heightPercent(5),
+                child: Row(
+                  children: [
+                    IconButton(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                      onPressed: ()=> Navigator.pop(context),
+                      icon:  Icon(Icons.arrow_back_ios, color: whiteColor,)
+                     ),
+                    Text(detailsMovie.name!,style: textStyleCustom.textAppbar),
+                  ],
+                  
+                ),
+              ),
+              IconButton(
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.zero,
+                onPressed: (){
+                  favoritesMoviesControllers.addFavoriteMoviePopular = detailsMovie;
+                }, 
+                icon: this.isFavorite?Icon(Ionicons.heart, color: yellowColor.withOpacity(0.2), size: responsive.diagonalPercent(3.8),)
+                      :Icon(Ionicons.heart_outline, color: greyColor, size: responsive.diagonalPercent(3.8),)
+              )  
+            ],
+          ),
+         );
+  }
+              
+
+ 
+  Container detailsMovieWidget(Responsive responsive, TextStyleCustom textStyleCustom, ResponseEpisodeMovies episode, ResponseDetailsMovies detailsMovie,BuildContext context, FavoritesMoviesControllers favoritesMoviesControllers) {
     
     return Container(
         padding: EdgeInsets.all(18),
@@ -64,6 +109,7 @@ class DetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            titlePageWidget(responsive, textStyleCustom, context, detailsMovie, favoritesMoviesControllers),
             MenuEpisode(responsive: responsive, textStyleCustom: textStyleCustom, episode: episode),
             SizedBox(height: responsive.heightPercent(2)),
             MovieVideoCard(responsive: responsive, episode: episode),  
@@ -81,4 +127,9 @@ class DetailsPage extends StatelessWidget {
         ),
       );
   }
+
+
+   
+ 
+
 }

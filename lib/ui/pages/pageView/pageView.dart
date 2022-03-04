@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/data/services/movies_service.dart';
 
 import 'package:movie_app/preferences/auth_preference.dart';
@@ -12,6 +13,7 @@ import 'package:movie_app/utils/colors.dart';
 import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class PageViewScreen extends StatelessWidget {
   final AuthPreference authPreference = AuthPreference(); 
   MoviesService moviesService = MoviesService();
@@ -31,7 +33,7 @@ class PageViewScreen extends StatelessWidget {
               authPreference.setUserLogin = false;
               Navigator.pushNamedAndRemoveUntil(context, 'welcome', (route) => false);
             },
-            icon: Icon(Icons.attractions_outlined, color: greyColor, size: 30)
+            icon: Icon(Ionicons.cog_outline, color: greyColor, size: 30)
           )
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:movie_app/data/models/airing_today_model.dart';
 import 'package:movie_app/data/models/details_movies_model.dart';
 import 'package:movie_app/data/models/episode_movie_model.dart';
 import 'package:movie_app/data/models/popular_movies_model.dart';
@@ -33,6 +34,11 @@ class MovieRepositoryimpl implements MoviesRepository{
   @override
   Future<ResponseVideoMovies?> getVideoMovie(String id, String seasonNumber, String episodeNumber) {
     return moviesService.getVideoMovie(id, seasonNumber, episodeNumber);
+  }
+
+  @override
+  Future<List<ResultAiringToday>?> getAiresTodayMovies() {
+    return moviesService.getAiresTodayMovies();
   }
 
 }

@@ -28,6 +28,7 @@ class FavoritesPage extends StatelessWidget {
               physics: ScrollPhysics(),
               children: [
                 MovieCard(
+                  isFavorite: true,
                   nameMovie: favoritesMoviesControllers.totalListRecomendations[i].name,
                   urlImage:  'https://image.tmdb.org/t/p/w400'+ pathUrl,
                   isMovieCardRecomendation: true

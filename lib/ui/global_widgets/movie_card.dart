@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/data/models/recomendations_movies_model.dart';
 import 'package:movie_app/ui/global_controllers/favoritos_movie_controllers.dart';
 import 'package:movie_app/ui/global_widgets/rounded_button.dart';
 import 'package:movie_app/utils/colors.dart';
@@ -7,13 +9,16 @@ import 'package:movie_app/utils/responsive.dart';
 import 'package:movie_app/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
+
 class MovieCard extends StatelessWidget {
   final String? nameMovie, urlImage, iMDB;
   final VoidCallback? onTap, onTapLike;
   final bool isMovieCardRecomendation;
-  MovieCard({required this.nameMovie,this.urlImage, required this.isMovieCardRecomendation, this.iMDB : '9,6', this.onTap, this.onTapLike});
+  bool isFavorite;
+  MovieCard({required this.nameMovie,this.urlImage, required this.isMovieCardRecomendation, this.iMDB : '9,6', this.onTap, this.onTapLike, this.isFavorite = false});
   @override
   Widget build(BuildContext context) {
+    final FavoritesMoviesControllers favoritesMoviesControllers = Provider.of<FavoritesMoviesControllers>(context, listen: true);
     final Responsive responsive = Responsive(context);
     TextStyleCustom textStyleCustom = TextStyleCustom(context);
     return Container(
@@ -21,7 +26,8 @@ class MovieCard extends StatelessWidget {
       margin : EdgeInsets.symmetric(horizontal: responsive.diagonalPercent(0)) ,
       width  : responsive.widthPercent(40),
       height : responsive.heightPercent(22),
-      child  : this.isMovieCardRecomendation?movieCardHorizzontal(responsive, textStyleCustom):movieCardVertical(responsive, textStyleCustom, context)
+      child  : this.isMovieCardRecomendation?movieCardHorizzontal(responsive, textStyleCustom, favoritesMoviesControllers)
+                                            :movieCardVertical(responsive, textStyleCustom, context)
     );
   }
   
@@ -58,9 +64,19 @@ class MovieCard extends StatelessWidget {
       ],
     );
   }
-
-  Row movieCardHorizzontal(Responsive responsive, TextStyleCustom textStyleCustom) {
+  
+  getFavoritiesMovie(FavoritesMoviesControllers favoritesMoviesControllers){
     
+    try {
+      favoritesMoviesControllers.favoritesListRecomendations.firstWhere((element) => element.name == this.nameMovie);
+      this.isFavorite = true;
+    } catch (e) {
+      print(e);
+    }
+  }
+  Row movieCardHorizzontal(Responsive responsive, TextStyleCustom textStyleCustom, FavoritesMoviesControllers favoritesMoviesControllers) {
+    
+    getFavoritiesMovie(favoritesMoviesControllers);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -108,7 +124,8 @@ class MovieCard extends StatelessWidget {
                  SizedBox(width: responsive.heightPercent(2)),
                  IconButton(
                    onPressed: this.onTapLike,
-                   icon: Icon(Icons.label_important_outline, color: greyColor, size: 40,) 
+                   icon: this.isFavorite?Icon(Ionicons.heart, color: yellowColor.withOpacity(0.2), size: responsive.diagonalPercent(3.8),)
+                        :Icon(Ionicons.heart_outline, color: greyColor, size: responsive.diagonalPercent(3.8),)
                  )
                  
                ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/ui/pages/pageView/pageView_controller.dart';
 import 'package:movie_app/utils/colors.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +23,8 @@ class MenuNavigationBar extends StatelessWidget {
       showUnselectedLabels:true ,
       selectedLabelStyle: TextStyle(color: Colors.white),
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label: 'Favorites'),
+        BottomNavigationBarItem(icon: Icon(Ionicons.home_outline),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Ionicons.heart_outline),label: 'Favorites'),
         BottomNavigationBarItem(icon: Icon(Icons.history),label: 'Recent'),
         BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search')
       ],

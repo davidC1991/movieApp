@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/data/models/airing_today_model.dart';
 import 'package:movie_app/data/models/details_movies_model.dart';
 import 'package:movie_app/data/models/episode_movie_model.dart';
 import 'package:movie_app/data/models/popular_movies_model.dart';
@@ -43,7 +44,7 @@ class ServiceApiController extends ChangeNotifier{
 
   Future<ResponseEpisodeMovies?> getEpisodeMovies(String id, String seasonNumber, String episodeNumber)async{
     final episode = await movieRepositoryimpl.getEpisodeMovie(id, seasonNumber, episodeNumber);
-    final video = await getVideoMovies(id, seasonNumber, episodeNumber);
+    await getVideoMovies(id, seasonNumber, episodeNumber);
     updateEpisode = episode;
     return episode;
   }
@@ -52,6 +53,10 @@ class ServiceApiController extends ChangeNotifier{
     final videoMovie = await movieRepositoryimpl.getVideoMovie(id, seasonNumber, episodeNumber);
     updateVideoMovie = videoMovie;
     return videoMovie;
+  }
+
+  Future<List<ResultAiringToday>?> getAiringTodayMovies()async{
+    return await movieRepositoryimpl.getAiresTodayMovies();
   }
 
 }

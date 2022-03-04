@@ -1,3 +1,4 @@
+import 'package:movie_app/data/models/airing_today_model.dart';
 import 'package:movie_app/data/models/details_movies_model.dart';
 import 'package:movie_app/data/models/episode_movie_model.dart';
 import 'package:movie_app/data/models/popular_movies_model.dart';
@@ -110,6 +111,24 @@ class MoviesService{
     return null;  
   }
 
+  
+  Future<List<ResultAiringToday>?> getAiresTodayMovies()async{
+ 
+    this._detailUrlPath = '/3/tv/airing_today';
+    var url = Uri.https(_baseUrl, _detailUrlPath,{
+      'api_key' : _keyApi,
+      'language': 'en-US&page=1'
+    } );
+
+    final response   = await http.get(url);
+    
+    if (response.statusCode == 200){
+      ResponseAiringTodayMovies responseAiringTodayMovies = ResponseAiringTodayMovies.fromMap(json.decode(response.body));
+      return responseAiringTodayMovies.results; 
+    }
+   
+    return null;  
+  }
 
 }
 

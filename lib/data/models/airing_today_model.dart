@@ -1,7 +1,11 @@
+// To parse this JSON data, do
+//
+//     final responseAiringTodayMovies = responseAiringTodayMoviesFromMap(jsonString);
 
+import 'dart:convert';
 
-class ResponsePopularMovies {
-    ResponsePopularMovies({
+class ResponseAiringTodayMovies {
+    ResponseAiringTodayMovies({
         this.page,
         this.results,
         this.totalPages,
@@ -9,24 +13,24 @@ class ResponsePopularMovies {
     });
 
     int? page;
-    List<ResultPopular>? results;
+    List<ResultAiringToday>? results;
     int? totalPages;
     int? totalResults;
 
 
 
-    factory ResponsePopularMovies.fromMap(Map<String, dynamic> json) => ResponsePopularMovies(
+    factory ResponseAiringTodayMovies.fromMap(Map<String, dynamic> json) => ResponseAiringTodayMovies(
         page: json["page"],
-        results: List<ResultPopular>.from(json["results"].map((x) => ResultPopular.fromMap(x))),
+        results: List<ResultAiringToday>.from(json["results"].map((x) => ResultAiringToday.fromMap(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
     );
 
-  
+ 
 }
 
-class ResultPopular {
-    ResultPopular({
+class ResultAiringToday {
+    ResultAiringToday({
         this.backdropPath,
         this.firstAirDate,
         this.genreIds,
@@ -56,10 +60,9 @@ class ResultPopular {
     double? voteAverage;
     int? voteCount;
 
-    
 
-    factory ResultPopular.fromMap(Map<String, dynamic> json) => ResultPopular(
-        backdropPath: json["backdrop_path"],
+    factory ResultAiringToday.fromMap(Map<String, dynamic> json) => ResultAiringToday(
+        backdropPath: json["backdrop_path"] == null ? null : json["backdrop_path"],
         firstAirDate: DateTime.parse(json["first_air_date"]),
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
@@ -74,5 +77,4 @@ class ResultPopular {
         voteCount: json["vote_count"],
     );
 
-   
 }
